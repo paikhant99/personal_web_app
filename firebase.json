@@ -1,0 +1,41 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "kopaikhant-2405c",
+                    "appId": "1:679408955749:android:863855f59a107a2b00b18c",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "kopaikhant-2405c",
+                    "appId": "1:679408955749:ios:bf1faa0a4a4fcaa000b18c",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "kopaikhant-2405c",
+                    "appId": "1:679408955749:ios:bf1faa0a4a4fcaa000b18c",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "kopaikhant-2405c",
+                    "configurations": {
+                        "android": "1:679408955749:android:863855f59a107a2b00b18c",
+                        "ios": "1:679408955749:ios:bf1faa0a4a4fcaa000b18c",
+                        "macos": "1:679408955749:ios:bf1faa0a4a4fcaa000b18c",
+                        "web": "1:679408955749:web:3e92a60daac6f7c300b18c",
+                        "windows": "1:679408955749:web:25a146fd4e4d095800b18c"
+                    }
+                }
+            }
+        }
+    }
+}

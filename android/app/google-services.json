@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "679408955749",
+    "project_id": "kopaikhant-2405c",
+    "storage_bucket": "kopaikhant-2405c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679408955749:android:863855f59a107a2b00b18c",
+        "android_client_info": {
+          "package_name": "com.example.my_portfolios"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjFbMaF7UWjRrPsZbV_ysq7eHVta4J_ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
