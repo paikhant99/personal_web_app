@@ -1,5 +1,5 @@
 name: my_portfolios
-description: "A new Flutter project."
+description: "Personal portfolio app showcasing projects, skills, and experiences."
 publish_to: 'none'
 version: 0.1.0
 
@@ -17,6 +17,7 @@ dependencies:
   multiple_result: ^5.1.0
   provider: ^6.1.2
   url_launcher: ^6.3.0
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:

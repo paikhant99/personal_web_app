@@ -19,6 +19,7 @@ import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  // Ensure Flutter bindings are initialized before using Firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
