@@ -1,37 +1,51 @@
-name: Deploy Personal Web App to GitHub Pages
+name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
     branches:
-      - main # Change to your main branch if different
+      - main
+
+permissions:
+  contents: write  # Needed to push to gh-pages
 
 jobs:
-  build_and_deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.27.1'  # Set your Flutter version here
+      - name: Install Flutter SDK
+        run: |
+          git clone https://github.com/flutter/flutter.git --depth 1 -b stable
+          echo "$GITHUB_WORKSPACE/flutter/bin" >> $GITHUB_PATH
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Run flutter doctor
+        run: flutter doctor
 
-    - name: Build Flutter web app
-      run: flutter build web --release \
-        --dart-define=ANDROID_API_KEY=${{ secrets.ANDROID_API_KEY }} \
-        --dart-define=IOS_API_KEY=${{ secrets.IOS_API_KEY }} \
-        --dart-define=WEB_API_KEY=${{ secrets.WEB_API_KEY }} \
-        --dart-define=MACOS_API_KEY=${{ secrets.MACOS_API_KEY }} \
-        --dart-define=WINDOWS_API_KEY=${{ secrets.WINDOWS_API_KEY }} 
+      - name: Enable web support
+        run: flutter config --enable-web
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/web
-        publish_branch: gh-pages  # Change if you want to deploy to a different branch
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build personal web app
+        run: flutter build web --release \
+          --dart-define=ANDROID_API_KEY=${{ secrets.ANDROID_API_KEY }} \
+          --dart-define=IOS_API_KEY=${{ secrets.IOS_API_KEY }} \
+          --dart-define=WEB_API_KEY=${{ secrets.WEB_API_KEY }} \
+          --dart-define=MACOS_API_KEY=${{ secrets.MACOS_API_KEY }} \
+          --dart-define=WINDOWS_API_KEY=${{ secrets.WINDOWS_API_KEY }} 
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          cd build/web
+          git init
+          git add .
+          git commit -m "Deploy to GitHub Pages"
+          git branch -M gh-pages
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push -f origin gh-pages
